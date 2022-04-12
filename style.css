@@ -1,0 +1,6 @@
+
+.canvas-container {
+    max-width: 500px;
+    display: flex;
+    width: 40%;
+}
