@@ -1,4 +1,4 @@
-const subTech = ['go', 'html', 'css', 'js', 'docker', 'sql'];
+const subTech = ['go', 'html', 'css', 'js', 'docker', 'sql', 'c'];
 
 export const PrepareSkills = (allSkills) => {
   let tech = {};
