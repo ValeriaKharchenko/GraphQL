@@ -4,27 +4,78 @@
     <meta charset="UTF-8">
     <title>GraphQL</title>
     <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/css/uikit.min.css"/>
+
 </head>
 <body>
-<div id="user"></div>
-<div >
-<ul id="skills">
 
-</ul>
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+    <a class="uk-navbar-item uk-logo" href="#">GraphQL</a>
+    <div class="uk-navbar-right">
+        <div class="uk-navbar-item">
+            <form method="get" name="submit">
+                <div class="uk-margin">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: user"></span>
+                        <input class="uk-input" type="text" name="login" id="login">
+                    </div>
+                    <button type="submit" class="uk-button uk-button-default" id="button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="uk-card uk-card-default uk-card-body" style="text-align: center">
+    <h3 class="uk-card-title">Student:</h3>
+    <div id="user"></div>
 </div>
-<div id="xp"></div>
+<hr class="uk-divider">
+<div class="container">
+    <div class="uk-child-width-expand@s" uk-grid>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Tech-knowledge:</h3>
+            <ul id="techs" class="uk-list uk-list-large uk-list-divider"></ul>
+        </div>
+        <!--    <hr class="uk-divider-vertical">-->
+        <div class="uk-card uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Skills:</h3>
+            <ul id="skills" class="uk-list uk-list-large uk-list-divider"></ul>
+        </div>
 
+
+        <div class="uk-card uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Current XP:</h3>
+            <ul id="xp" class="uk-list uk-list-large uk-list-divider"></ul>
+        </div>
+        <div class="uk-card uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Audits:</h3>
+            <ul id="audits" class="uk-list uk-list-large uk-list-divider"></ul>
+        </div>
+    </div>
+</div>
+<br><hr><br>
 <div class="canvas-container">
     <canvas id="tech-pie"></canvas>
     <canvas id="skill-pie"></canvas>
 </div>
+<br><hr><br>
+<div>
+    <canvas id="skill-bar"></canvas>
+    <br>
+    <canvas id="tech-bar"></canvas>
+</div>
+<br><hr><br>
 <div>
     <canvas id="go-line"></canvas>
+    <br>
     <canvas id="js-line"></canvas>
 </div>
-<script type="module" src="./main.js" ></script>
+<script type="module" src="./main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit-icons.min.js"></script>
+<!--<script src="uikit/dist/js/uikit-icons.min.js"></script>-->
 </body>
 
 </html>

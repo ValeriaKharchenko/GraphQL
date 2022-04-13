@@ -43,7 +43,7 @@ export class MyProfile {
   #getUser = async () => {
     const query = `
     query userData($limit: Int, $offset: Int) {
-        user (where: { login: { _eq: ${this.login}}}
+        user (where: { login: { _eq: "${this.login}"}}
         order_by: {id: asc}
         limit: $limit
         offset: $offset) {
@@ -65,6 +65,9 @@ export class MyProfile {
   ) {
     amount
     type
+    object {
+      name
+    }
   }
 }`;
 
@@ -76,7 +79,20 @@ export class MyProfile {
         skills[key] = ob.amount;
       }
     });
-    return skills;
+
+    let skillsForTask = {};
+    data.forEach((ob) => {
+      const key = ob.type.replaceAll('skill_', '');
+      if (!skillsForTask[ob.object.name]) {
+        skillsForTask[ob.object.name] = [];
+      }
+      skillsForTask[ob.object.name].push({
+        type: key,
+        amount: ob.amount,
+      });
+    });
+    console.log(skills, skillsForTask);
+    return [skills, skillsForTask];
   }
 
   async GetXP() {
@@ -155,11 +171,9 @@ export class MyProfile {
       }
     }`;
     const data = await this.getData(query, 0, 'result');
-    // console.log(data);
     let Attempts = {};
 
     data.forEach((ob) => {
-      //есть объект, но нет успешной попытки
       if (Attempts[ob.object.name]) {
         if (ob.grade === 0) {
           Attempts[ob.object.name]['attempts']++;
@@ -184,8 +198,6 @@ export class MyProfile {
     const attJS = Object.values(Attempts).filter((ob) =>
       ob.path.startsWith('/johvi/div-01/piscine-js/')
     );
-    // console.log(attGo.filter((o) => o.name === 'union'));
-    // console.log(attJS.length, attJS);
 
     return [attGo, attJS];
   }

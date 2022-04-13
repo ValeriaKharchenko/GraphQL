@@ -22,3 +22,31 @@ export const PrepareSkills = (allSkills) => {
   });
   return [perTech, perSkills];
 };
+
+export const SplitType = (data) => {
+  // console.log(data);
+  let tech = {};
+  let skills = {};
+  Object.keys(data).forEach((key) => {
+    data[key].forEach((ob) => {
+      if (subTech.indexOf(ob.type) >= 0) {
+        if (!tech[key]) {
+          tech[key] = [];
+        }
+        tech[key].push({
+          type: ob.type,
+          amount: ob.amount,
+        });
+      } else {
+        if (!skills[key]) {
+          skills[key] = [];
+        }
+        skills[key].push({
+          type: ob.type,
+          amount: ob.amount,
+        });
+      }
+    });
+  });
+  return [tech, skills];
+};
